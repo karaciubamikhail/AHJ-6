@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <div class = "container">
+import { Task } from "../task";
+
+test('should first', () => { 
+    document.body.textContent = `
+    <div class = "container">
     <div class="task">
       <div class="task-head">
         <h2 class="task-head-header">TODO</h2>
@@ -32,6 +27,8 @@
       </div>
       <button class="task-add">Add abother card</button>
     </div>
-  </div>
-</body>
-</html>
+  </div>`
+  let taskManager = new Task (document.querySelectorAll('.task'));
+    taskManager.start();
+    expect(1).toBe(1)
+ })

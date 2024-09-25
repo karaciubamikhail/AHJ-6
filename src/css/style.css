@@ -1,3 +1,31 @@
 body {
     color: #999;
 }
+.container{
+    display: flex;
+    justify-content: center;
+}
+.task{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    background-color: #787676;
+    padding: 20px;
+}
+.task:not(:last-child){
+    margin-right: 20px;
+}
+.task-body{
+    display: flex;
+    flex-direction: column;
+}
+.task-body__item{
+    padding: 20px;
+    background-color: white;
+    color: aqua;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.task-add{
+    color: black;
+}
