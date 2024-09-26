@@ -29,3 +29,6 @@ body {
 .task-add{
     color: black;
 }
+.dragged {
+    position: absolute;
+}
