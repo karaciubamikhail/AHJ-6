@@ -1,22 +1,26 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   target: 'web',
+  entry: path.resolve(__dirname, '/src/index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '',
-    assetModuleFilename: 'images/[hash][ext][query]',
+    assetModuleFilename: 'img/[name][ext]',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
       },
       {
         test: /\.html$/,
@@ -33,7 +37,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.png$/,
         type: 'asset/resource',
       },
     ],

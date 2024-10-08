@@ -1,6 +1,6 @@
-// TODO: write code here
-import Trello from './Trello';
+import TaskWidget from './taskWidget';
 
-const page = document.querySelector('#trello');
-const app = new Trello(page);
-app.init();
+document.addEventListener('DOMContentLoaded', () => {
+  const taskManager = new TaskWidget(document.querySelector('.task-widget'));
+  taskManager.init();
+});
