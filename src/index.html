@@ -4,70 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link href="/favicon.ico" rel="icon" type="image/x-icon" sizes="16x16">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Trello</title>
 </head>
 <body>
-  <div class = "container">
-    <div class="task">
-      <div class="task-head">
-        <h2 class="task-head-header">TODO</h2>
-      </div>
-      <div class="task-body">
-        <div class="task-body__item">
-          text
-          <button class="remove_tas">Удалить</button>
-        </div>
-        <div class="task-body__item">
-          text
-          <button class="remove_tas">Удалить</button>
-        </div>
-        <div class="task-body__item">
-          text
-          <button class="remove_tas">Удалить</button>
+  <div class="trello" id="trello">
+
+    <div class="block">
+      <div class="block__header">
+        <h4 class="block__title">Нужно сделать</h4>
+        <div class="block__logo">
+          <img class="block__logo-img" src="./img/icons/trello-logo-gradient-blue.svg" alt="Trello icon">
         </div>
       </div>
-      <button class="task-add">Add abother card</button>
+      <div class="block__items"></div>
+      <button class="add-button" data-add-button="create">+ Добавить карточку</button>
     </div>
-    <div class="task">
-      <div class="task-head">
-        <h2 class="task-head-header">In progress</h2>
-      </div>
-      <div class="task-body">
-        <div class="task-body__item">
-          text
-          <button class="remove_tas">Удалить</button>
-        </div>
-        <div class="task-body__item">
-          text
-          <button class="remove_tas">Удалить</button>
-        </div>
-        <div class="task-body__item">
-          text
-          <button class="remove_tas">Удалить</button>
+
+    <div class="block">
+      <div class="block__header">
+        <h4 class="block__title">В процессе</h4>
+        <div class="block__logo">
+          <img class="block__logo-img" src="./img/icons/trello-logo-gradient-blue.svg" alt="Trello icon">
         </div>
       </div>
-      <button class="task-add">Add abother card</button>
+      <div class="block__items"></div>
+      <button class="add-button" data-add-button="create">+ Добавить карточку</button>
     </div>
-    <div class="task">
-      <div class="task-head">
-        <h2 class="task-head-header">Done</h2>
-      </div>
-      <div class="task-body">
-        <div class="task-body__item">
-          text
-          <button class="remove_tas">Удалить</button>
-        </div>
-        <div class="task-body__item">
-          text
-          <button class="remove_tas">Удалить</button>
-        </div>
-        <div class="task-body__item">
-          text
-          <button class="remove_tas">Удалить</button>
+
+    <div class="block">
+      <div class="block__header">
+        <h4 class="block__title">Готово</h4>
+        <div class="block__logo">
+          <img class="block__logo-img" src="./img/icons/trello-logo-gradient-blue.svg" alt="Trello icon">
         </div>
       </div>
-      <button class="task-add">Add abother card</button>
+      <div class="block__items"></div>
+      <button class="add-button" data-add-button="create">+ Добавить карточку</button>
     </div>
+    
   </div>
 </body>
 </html>

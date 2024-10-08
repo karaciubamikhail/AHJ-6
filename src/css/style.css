@@ -1,34 +1,278 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
-    color: #999;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: rgb(92, 92, 92);
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(66, 66, 66);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
-.container{
-    display: flex;
-    justify-content: center;
+
+.trello {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-left: 14px;
+  padding-right: 14px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 112, 162, 1) 0%,
+    rgba(22, 75, 106, 1) 100%
+  );
+  /* background-color: #164B6A; */
+  margin: 0 auto;
 }
-.task{
-    display: flex;
-    flex-direction: column;
-    width: 25%;
-    background-color: #787676;
-    padding: 20px;
+
+.trello div.block:nth-child(n + 2) {
+  margin-left: 22px;
 }
-.task:not(:last-child){
-    margin-right: 20px;
+
+/* Старт Блок карточек */
+
+.block {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-height: 70%;
+  max-height: 95%;
+  border-radius: 8px;
+  padding: 14px 4px;
+  background-color: #dbdbdb;
 }
-.task-body{
-    display: flex;
-    flex-direction: column;
+
+.block__title {
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  user-select: none;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.task-body__item{
-    padding: 20px;
-    background-color: white;
-    color: aqua;
-    border-radius: 20px;
-    margin-bottom: 20px;
+
+.block__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  margin-bottom: 5px;
 }
-.task-add{
-    color: black;
+
+.block__logo-img {
+  display: block;
+  width: 80px;
 }
-.dragged {
-    position: absolute;
+
+.block__items {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  padding-right: 9px;
+  padding-left: 9px;
+}
+
+/* Стиль scroll списка*/
+.block__items::-webkit-scrollbar {
+  width: 8px;
+  background-color: #cacaca;
+}
+
+.block__items::-webkit-scrollbar-thumb {
+  background-color: #818181;
+  border-radius: 4px;
+}
+/* конец */
+
+.block__item {
+  position: relative;
+  max-width: 266px;
+  width: 100%;
+  font-size: 16px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  margin: 0 auto;
+  background: white;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  cursor: move;
+  margin-left: auto;
+  margin-right: auto;
+  word-break: break-all;
+}
+
+.block__item-remove {
+  position: absolute;
+  right: -7px;
+  top: -4px;
+  width: 19px;
+  height: 19px;
+  background-image: url("../img/icons/remove.svg");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  transition-delay: 0.2s;
+}
+
+.block__item:hover .block__item-remove {
+  transform: rotate(180deg);
+  opacity: 1;
+  transition: all 0.2s ease;
+  transition-delay: 0.5s;
+}
+
+.block__items *:nth-child(n + 2) {
+  margin-top: 8px;
+}
+
+.add-button {
+  flex: 1 1;
+  font-family: inherit;
+  font-size: 13px;
+  color: inherit;
+  text-transform: uppercase;
+  border: 1px dashed transparent;
+  padding: 8px;
+  margin: 10px 10px 0 10px;
+  border-radius: 6px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.add-button:hover {
+  background-color: #c9c9c9;
+  border: 1px dashed black;
+  transition: all 0.2s linear;
+}
+
+.draggable {
+  cursor: grab;
+  position: absolute;
+  opacity: 0.9;
+  z-index: 50;
+  pointer-events: none;
+  transform: rotate(1deg);
+}
+
+.prev-item {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px dashed black;
+  opacity: 0.75;
+  background-color: #f8f8f8;
+	cursor: pointer;
+}
+
+/* Конец Блок карточек */
+
+/* Карточка ввода */
+
+.block__add {
+  margin: 14px 12px 0 12px;
+  background-color: white;
+  padding: 10px 10px;
+  border-radius: 5px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.block__add-field {
+  font-family: inherit;
+  tab-size: 14px;
+  color: inherit;
+  width: 100%;
+  padding: 4px 8px;
+  resize: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid darkgray;
+  transition: border 0.2s linear;
+}
+
+/* Стиль scroll textAria*/
+
+.block__add-field::-webkit-scrollbar {
+  width: 8px;
+  background-color: #cacaca;
+}
+
+.block__add-field::-webkit-scrollbar-thumb {
+  background-color: #818181;
+  border-radius: 4px;
+}
+/* конец */
+
+.block__add-field:focus {
+  border: 1px solid rgb(114, 114, 114);
+  transition: border 0.2s linear;
+}
+
+.block__add-field::placeholder {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.block__add-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.block__add-button {
+  font-family: inherit;
+  font-size: 12px;
+  color: white;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  padding: 5px 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+button[data-add-button="add"] {
+  background-color: #1595d1;
+}
+
+button[data-add-button="add"]:hover {
+  padding: 5px 13px;
+  background-color: rgb(5, 123, 178);
+  transition: all 0.3s ease;
+}
+
+button[data-add-button="close"] {
+  background-color: #ef5f4ff7;
+  /* color: white; */
+}
+
+button[data-add-button="close"]:hover {
+  padding: 5px 13px;
+  background-color: #de311ef7;
+  transition: all 0.3s ease;
+}
+
+/* Конец карточка ввода */
+
+.hidden {
+  display: none;
 }
