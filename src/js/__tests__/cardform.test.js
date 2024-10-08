@@ -1,4 +1,3 @@
-
-test('testCardMir',()=>{
-    expect(1).toBe(1)
-})
+test('testCardMir', () => {
+    expect(1).toBe(1);
+});
