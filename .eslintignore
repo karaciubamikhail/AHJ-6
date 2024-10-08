@@ -1,5 +1,4 @@
 dist
-coverage
-doc
-webpack.*.js
-yarn.lock
+webpack.common.js
+webpack.dev.js
+webpack.prod.js

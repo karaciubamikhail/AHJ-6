@@ -1,65 +1,103 @@
-.task-widget {
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#tasks {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #d8bbbb;
+  margin: 50px auto 0 auto;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  align-items: start;
+}
+
+.col-tasks {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-right: 5px;
+  background-color: #eaeaea;
+}
+
+.col-tasks p {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.col-tasks:nth-child(1) {
+  background-color: rgb(231, 235, 21);
+}
+
+.col-tasks:nth-child(2) {
+  color: #ffffff;
+  background-color: rgb(21, 24, 235);
+}
+
+.col-tasks:nth-child(3) {
+  background-color: rgb(39, 235, 21);
+}
+
+.col-tasks:nth-child(2) .item-task{
+  color: #000000;
+}
+
+.col-tasks:last-child {
+  margin-right: 0;
+}
+
+.item-task {
+  border: 1px solid;
+  border-radius: 5px;
+  width: 100%;
   padding: 5px;
-}
-.task-widget__column {
-  border-radius: 3px;
+  margin-bottom: 5px;
+  cursor: grabbing;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(85, 79, 79);
-  width: 31%;
-  min-height: 200px;
-  padding-bottom: 55px;
-}
-.task-widget__item {
-  position: relative;
-  border-radius: 3px;
-  box-sizing: border-box;
-  background-color: #fff;
-  width: 98%;
-  align-self: center;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding: 6px;
+  background-color: #ffffff;
 }
 
 
-.task-widget__item--dragged {
-  position: absolute;
-}
-
-.task-widget__item--close {
-  box-sizing: border-box;
-  position: absolute;
-  top: 0; right: 0;
+.item-task:hover > .del-task{
   display: block;
 }
 
-
-.task-widget__button {
-  border-radius: 3px;
-  background-color: rgb(197, 143, 41);
-  padding: 5px 10px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.item-task:last-child {
+  margin-bottom: 0;
 }
 
-.add-card__form {
+.del-task {
+  width: 20px;
+  height: 20px;
+  top: 5px;
+  right: 5px;
   position: absolute;
-  border-radius: 3px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #fff;
+  cursor: pointer;
+  text-align: center;
 }
 
-.add-card__input {
-  width: 98%;
-  min-height: 30px;
-  resize: none;
+.item-tasks {
+  min-height: 15px;
+}
+
+.dragged {
+  border-radius: 10px;
+  position: absolute;
+  z-index: 999;
+  pointer-events: none;
+  background: #fff;
+  cursor: grabbing;
+}
+
+.add-task, .input-task {
+  margin-top: 10px;
+  padding: 5px 0;
+}
+
+.button {
+  cursor: pointer;
+}
+.hidden {
+  display: none;
 }

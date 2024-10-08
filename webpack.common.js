@@ -1,25 +1,45 @@
 const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+//const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  target: 'web',
-  entry: path.resolve(__dirname, '/src/index.js'),
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '',
-    assetModuleFilename: 'img/[name][ext]',
+    filename: 'bundle.js',
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: './index.html',
+      favicon: './src/img/favicon.ico',
+    }),
+    // new CopyWebpackPlugin([
+    //   {
+    //     from: './src/img/', to: 'img/',
+    //   }
+    // ]),
+  ],
+  devServer: {
+    port: 9000,
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.css$/,
         use: [
-          {
-            loader: 'babel-loader',
-          },
+          MiniCssExtractPlugin.loader, 'css-loader',
         ],
       },
       {
@@ -30,26 +50,30 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader, 'css-loader',
-        ],
-      },
-      {
-        test: /\.png$/,
-        type: 'asset/resource',
-      },
+      // {
+      //   test: /\.(png)$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: {
+      //         esModule: false,
+      //         name: 'img/[name].[ext]',
+      //       },
+      //     },
+      //   ],
+      // },
+      // {
+      //   test: /\.(txt)$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: {
+      //         esModule: false,
+      //         name: 'txt/[name].[ext]',
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-    }),
-  ],
 };
