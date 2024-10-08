@@ -1,4 +1,4 @@
 dist
-webpack.common.js
-webpack.dev.js
-webpack.prod.js
+coverage
+doc
+webpack.*.js

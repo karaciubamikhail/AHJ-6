@@ -1,31 +1,13 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-      favicon: './src/img/favicon.ico',
-    }),
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: './src/img/', to: 'img/',
-    //   }
-    // ]),
-  ],
-  devServer: {
-    port: 9000,
+    publicPath: '',
   },
   module: {
     rules: [
@@ -37,12 +19,6 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader, 'css-loader',
-        ],
-      },
-      {
         test: /\.html$/,
         use: [
           {
@@ -50,30 +26,31 @@ module.exports = {
           },
         ],
       },
-      // {
-      //   test: /\.(png)$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: {
-      //         esModule: false,
-      //         name: 'img/[name].[ext]',
-      //       },
-      //     },
-      //   ],
-      // },
-      // {
-      //   test: /\.(txt)$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: {
-      //         esModule: false,
-      //         name: 'txt/[name].[ext]',
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, 'css-loader',
+        ],
+      },
+      {
+        test: /\.svg$/,
+        type: 'asset/resource',
+      },
     ],
   },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: './src/index.html',
+      filename: './index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, 'src/img'), to: path.resolve(__dirname, 'dist/img') }
+      ],
+    })
+  ],
 };

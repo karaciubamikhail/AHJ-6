@@ -1,103 +1,130 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
+body {
+    color: #fff;
+    font-family: 'Arial';
+    line-height: 100%;
+    background: #107abb;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+.title-block {
+    margin: 20px 0;
+}
+.wrap-col {
+    display: flex;
+    margin: 15px -15px;
+    align-items: flex-start;
+}
+.col {
+    width: calc(33.33% - 30px);
+    background: #dee2e5;
+    color: #2f4b5a;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin: 15px;
 }
 
-#tasks {
-  display: flex;
-  margin: 50px auto 0 auto;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-  align-items: start;
+.col h3 {    
+    text-transform: uppercase;
+}
+.col-addbtn {
+    opacity: 0.5;
+    cursor: pointer;
 }
 
-.col-tasks {
-  width: 200px;
-  padding: 10px;
-  border: 1px solid;
-  border-radius: 5px;
-  margin-right: 5px;
-  background-color: #eaeaea;
+.col-addbtn:hover {
+    opacity: 1;
 }
 
-.col-tasks p {
-  text-align: center;
-  margin-bottom: 10px;
+.tasks-body {
+    min-height: 200px;
 }
 
-.col-tasks:nth-child(1) {
-  background-color: rgb(231, 235, 21);
+.task {
+    padding: 10px;
+    background: #ffffff;
+    margin: 10px 0;
+    border-radius: 3px;
+    box-shadow: 0px 2px 2px rgba(47, 75, 90, 0.2);
+    cursor: pointer;
+    position: relative;
 }
 
-.col-tasks:nth-child(2) {
-  color: #ffffff;
-  background-color: rgb(21, 24, 235);
+.task:hover {
+    box-shadow: 0px 2px 2px rgba(47, 75, 90, 0.4);
 }
 
-.col-tasks:nth-child(3) {
-  background-color: rgb(39, 235, 21);
+.task.dragged {
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
+    min-width: 300px;
 }
 
-.col-tasks:nth-child(2) .item-task{
-  color: #000000;
+.task.dragged .remove-task {
+    display: none;
 }
 
-.col-tasks:last-child {
-  margin-right: 0;
-}
-
-.item-task {
-  border: 1px solid;
-  border-radius: 5px;
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 5px;
-  cursor: grabbing;
-  position: relative;
-  background-color: #ffffff;
-}
-
-
-.item-task:hover > .del-task{
-  display: block;
-}
-
-.item-task:last-child {
-  margin-bottom: 0;
-}
-
-.del-task {
-  width: 20px;
-  height: 20px;
-  top: 5px;
-  right: 5px;
-  position: absolute;
-  cursor: pointer;
-  text-align: center;
-}
-
-.item-tasks {
-  min-height: 15px;
-}
-
-.dragged {
-  border-radius: 10px;
-  position: absolute;
-  z-index: 999;
-  pointer-events: none;
-  background: #fff;
-  cursor: grabbing;
-}
-
-.add-task, .input-task {
-  margin-top: 10px;
-  padding: 5px 0;
-}
-
-.button {
-  cursor: pointer;
-}
 .hidden {
-  display: none;
+    display: none;
+}
+.textarea-block {
+    padding: 10px 0 15px;
+}
+
+textarea {
+    border: none;
+    border-radius: 3px;
+    margin: 0 0 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    resize : none;
+    box-shadow: 0px 2px 2px rgba(47, 75, 90, 0.2);
+} 
+.btn-area button {
+    padding: 10px;
+    cursor: pointer;
+}
+.btn-area button:hover {
+    opacity: 0.8;
+}
+.close-add-card {
+    border: none;
+    background: none;
+}
+.close-add-card:before {
+    content: '\2716';
+}
+ .add-card {
+    border: none;
+    background: #5ca84d;
+    color: #ffffff;
+    border-radius: 3px;
+}
+
+.remove-task {
+    width: 10px;
+    height: 10px;
+    color: #818486;
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    z-index: 10;
+    text-align: right;
+    opacity: 0.5;
+}
+  
+.remove-task:before {
+    content: '\2716';
+    font-size: 12px;
+}
+  
+.remove-task:hover {
+    opacity: 1;
 }
